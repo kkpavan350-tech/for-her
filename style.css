@@ -58,9 +58,9 @@ body {
 
 .message {
   position: absolute;
-  top: 30%;
-  right: 7%;
-  width: min(34rem, 40vw);
+  top: 22%;
+  right: 5%;
+  width: min(42rem, 48vw);
   color: var(--ink);
   text-shadow: 0 3px 18px rgba(255, 255, 255, .78);
 }
@@ -74,16 +74,16 @@ body {
 }
 
 .title {
-  margin: 0 0 1.6rem;
+  margin: 0 0 1.2rem;
   color: var(--deep);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3rem, 8.2vw, 7.25rem);
-  line-height: .82;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  line-height: .9;
   letter-spacing: 0;
 }
 
 .typewriter {
-  min-height: 10rem;
+  min-height: 15rem;
   color: var(--ink);
   font-size: clamp(1rem, 2vw, 1.55rem);
   font-weight: 650;
