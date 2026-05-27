@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happy Birthday</title>
+  <link rel="stylesheet" href="./birthday-animation.css">
+</head>
+<body>
+  <main class="card" aria-label="Animated birthday greeting">
+    <img class="base-art" src="./birthday-base.png" alt="">
+    <div class="soft-glow" aria-hidden="true"></div>
+    <div class="heart-rain" aria-hidden="true"></div>
+
+    <section class="message" aria-live="polite">
+      <p class="eyebrow">HEY GORGEOUS 🦋</p>
+      <h1 class="title">Happy<br>Birthday</h1>
+      <div class="typewriter" id="typewriter"></div>
+    </section>
+  </main>
+
+  <script src="./birthday-animation.js"></script>
+</body>
+</html>
