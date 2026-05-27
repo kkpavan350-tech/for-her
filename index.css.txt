@@ -1,0 +1,186 @@
+:root {
+  --ink: #a31645;
+  --deep: #c51f58;
+  --pink: #ff6f94;
+  --paper: #ffe7ef;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  overflow: hidden;
+  background: var(--paper);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.card {
+  position: relative;
+  width: min(100vw, 1536px);
+  aspect-ratio: 3 / 2;
+  max-height: 100vh;
+  overflow: hidden;
+  background: #ffeef4;
+  animation: pageReveal 2.4s ease forwards;
+  filter: blur(18px);
+  transform: scale(1.035);
+}
+
+.base-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+}
+
+.soft-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 73% 49%, rgba(255, 231, 239, .92) 0 25%, rgba(255, 231, 239, .56) 38%, transparent 60%),
+    linear-gradient(90deg, transparent 0 51%, rgba(255, 239, 245, .66) 60% 100%);
+  pointer-events: none;
+}
+
+.message {
+  position: absolute;
+  top: 30%;
+  right: 7%;
+  width: min(34rem, 40vw);
+  color: var(--ink);
+  text-shadow: 0 3px 18px rgba(255, 255, 255, .78);
+}
+
+.eyebrow {
+  margin: 0 0 .7rem;
+  color: var(--deep);
+  font-size: clamp(.68rem, 1.3vw, 1rem);
+  font-weight: 800;
+  letter-spacing: .22em;
+}
+
+.title {
+  margin: 0 0 1.6rem;
+  color: var(--deep);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 8.2vw, 7.25rem);
+  line-height: .82;
+  letter-spacing: 0;
+}
+
+.typewriter {
+  min-height: 10rem;
+  color: var(--ink);
+  font-size: clamp(1rem, 2vw, 1.55rem);
+  font-weight: 650;
+  line-height: 1.58;
+  white-space: pre-line;
+}
+
+.typewriter::after {
+  content: "";
+  display: inline-block;
+  width: .12em;
+  height: 1.05em;
+  margin-left: .12em;
+  translate: 0 .15em;
+  background: var(--ink);
+  animation: caret 720ms steps(1) infinite;
+}
+
+.heart {
+  position: absolute;
+  top: -12vh;
+  color: var(--pink);
+  font-size: var(--size);
+  line-height: 1;
+  opacity: .8;
+  filter: drop-shadow(0 10px 12px rgba(197, 31, 88, .18));
+  animation: fall var(--duration) linear var(--delay) infinite;
+  left: var(--left);
+}
+
+@keyframes pageReveal {
+  0% {
+    filter: blur(22px);
+    opacity: .08;
+    transform: scale(1.055);
+  }
+
+  58% {
+    filter: blur(8px);
+    opacity: .95;
+  }
+
+  100% {
+    filter: blur(0);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fall {
+  0% {
+    transform: translate3d(0, -14vh, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate3d(var(--drift), 116vh, 0) rotate(360deg);
+  }
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    overflow: auto;
+  }
+
+  .card {
+    width: 100vw;
+    min-height: 100vh;
+    aspect-ratio: auto;
+  }
+
+  .base-art {
+    object-position: 27% center;
+  }
+
+  .soft-glow {
+    background: linear-gradient(180deg, rgba(255, 239, 245, .52), rgba(255, 239, 245, .94) 46%, rgba(255, 239, 245, .78));
+  }
+
+  .message {
+    top: auto;
+    right: 7vw;
+    bottom: 8vh;
+    left: 7vw;
+    width: auto;
+  }
+
+  .title {
+    font-size: clamp(3rem, 18vw, 5.4rem);
+  }
+
+  .typewriter {
+    min-height: 12rem;
+  }
+}
