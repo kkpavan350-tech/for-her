@@ -58,9 +58,10 @@ body {
 
 .message {
   position: absolute;
-  top: 22%;
-  right: 5%;
-  width: min(42rem, 48vw);
+  top: 16%;
+  right: 3%;
+  width: min(38rem, 42vw);
+  z-index: 5;
   color: var(--ink);
   text-shadow: 0 3px 18px rgba(255, 255, 255, .78);
 }
@@ -83,11 +84,12 @@ body {
 }
 
 .typewriter {
-  min-height: 15rem;
+  min-height: 18rem;
+  max-width: 32rem;
   color: var(--ink);
-  font-size: clamp(1rem, 2vw, 1.55rem);
+  font-size: clamp(1rem, 1.7vw, 1.35rem);
   font-weight: 650;
-  line-height: 1.58;
+  line-height: 1.7;
   white-space: pre-line;
 }
 
