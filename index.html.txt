@@ -1,0 +1,315 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happy Birthday</title>
+  <style>
+    :root {
+      --rose: #c82257;
+      --deep-rose: #741a3e;
+      --soft-rose: #ffddec;
+      --ink: #572239;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(255, 224, 237, 0.72), transparent 28%),
+        radial-gradient(circle at 66% 76%, rgba(255, 207, 226, 0.46), transparent 24%),
+        linear-gradient(180deg, #fff 0%, #fff7fb 52%, #ffdce9 100%);
+      opacity: 0;
+      animation: backgroundReveal 0.9s ease 0.15s forwards;
+    }
+
+    .stage {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.85fr);
+      align-items: center;
+      gap: 4vw;
+      padding: clamp(24px, 5vw, 74px);
+      isolation: isolate;
+    }
+
+    .tree-scene {
+      position: relative;
+      z-index: 2;
+      min-height: min(72vh, 610px);
+      align-self: end;
+    }
+
+    .tree-image {
+      position: absolute;
+      left: clamp(-24px, 1vw, 18px);
+      bottom: clamp(0px, 5vh, 42px);
+      width: min(74vw, 940px);
+      min-width: 560px;
+      aspect-ratio: 1180 / 540;
+      object-fit: contain;
+      filter: drop-shadow(0 24px 42px rgba(92, 12, 28, 0.2));
+      opacity: 0;
+      transform: translateY(-85vh) scale(0.96);
+      animation: treeDrop 0.65s cubic-bezier(0.16, 0.9, 0.28, 1.08) 0.12s forwards;
+    }
+
+    .message {
+      position: relative;
+      z-index: 2;
+      padding: clamp(18px, 3vw, 34px) 0;
+      text-align: left;
+      opacity: 0;
+      transform: translateX(16px);
+      animation: messageReveal 0.5s ease 0.95s forwards;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--rose);
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      color: var(--rose);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.8rem, 7vw, 5.8rem);
+      line-height: 0.92;
+      letter-spacing: 0;
+      text-shadow: 0 8px 28px rgba(200, 34, 87, 0.16);
+    }
+
+    .typewriter {
+      min-height: 8.8em;
+      margin: 0;
+      color: var(--deep-rose);
+      font-size: clamp(1.04rem, 2vw, 1.45rem);
+      line-height: 1.7;
+      font-weight: 500;
+      white-space: pre-line;
+    }
+
+    .typewriter::after {
+      content: "";
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      margin-left: 4px;
+      vertical-align: -0.12em;
+      background: var(--rose);
+      animation: blink 0.8s steps(1) infinite;
+    }
+
+    .petal {
+      position: fixed;
+      top: -8vh;
+      left: var(--x);
+      z-index: 1;
+      width: var(--size);
+      height: var(--size);
+      pointer-events: none;
+      opacity: 0;
+      transform: rotate(45deg);
+      animation: fall var(--duration) linear var(--delay) infinite;
+    }
+
+    .petal::before,
+    .petal::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: inherit;
+    }
+
+    .petal::before {
+      left: -50%;
+    }
+
+    .petal::after {
+      top: -50%;
+    }
+
+    .petal:nth-child(3n) {
+      background: #ff4a68;
+      filter: drop-shadow(0 8px 12px rgba(255, 74, 104, 0.18));
+    }
+
+    .petal:nth-child(3n + 1) {
+      background: #ff8ab5;
+      filter: drop-shadow(0 8px 12px rgba(255, 138, 181, 0.16));
+    }
+
+    .petal:nth-child(3n + 2) {
+      background: #ffbfd7;
+      filter: drop-shadow(0 8px 12px rgba(255, 191, 215, 0.16));
+    }
+
+    @keyframes fall {
+      0% {
+        opacity: 0;
+        translate: 0 -10vh;
+        rotate: 0deg;
+      }
+
+      12% {
+        opacity: var(--opacity);
+      }
+
+      35% {
+        translate: var(--drift-mid) 35vh;
+      }
+
+      70% {
+        translate: var(--drift-turn) 76vh;
+      }
+
+      100% {
+        opacity: 0;
+        translate: var(--drift) 112vh;
+        rotate: 360deg;
+      }
+    }
+
+    @keyframes backgroundReveal {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes messageReveal {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes treeDrop {
+      72% {
+        opacity: 1;
+        transform: translateY(14px) scale(1.01);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes shimmer {
+      0%,
+      100% {
+        scale: 1;
+      }
+
+      50% {
+        scale: 1.12;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .stage {
+        grid-template-columns: 1fr;
+        align-items: end;
+        padding: 28px 24px 54px;
+      }
+
+      .empty-space {
+        min-height: 28vh;
+      }
+
+      .tree-scene {
+        min-height: 46vh;
+      }
+
+      .tree-image {
+        left: -54vw;
+        width: 188vw;
+        min-width: 760px;
+      }
+
+      .message {
+        text-align: right;
+      }
+
+      .typewriter {
+        margin-left: auto;
+        max-width: 32rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage">
+    <div class="tree-scene" aria-hidden="true">
+      <img class="tree-image" src="love-tree.svg" alt="">
+    </div>
+    <section class="message" aria-label="Birthday wishes">
+      <p class="eyebrow">Hey Gorgeous 🦋</p>
+      <h1>Happy<br>Birthday</h1>
+      <p class="typewriter" id="wish"></p>
+    </section>
+  </main>
+
+  <script>
+    const wishText = "May God bless you 🌿\nAnd give u many happiness 💞\nJust saying... you're pretty awesome 💗\nSending good vibes and maybe a wink 😉\nHope u have a great day today ❤️🤭";
+    const wish = document.getElementById("wish");
+    const totalPetals = 74;
+
+    for (let i = 0; i < totalPetals; i += 1) {
+      const petal = document.createElement("span");
+      petal.className = "petal";
+      const driftValue = -90 + Math.random() * 180;
+      petal.style.setProperty("--x", `${Math.random() * 100}vw`);
+      petal.style.setProperty("--size", `${10 + Math.random() * 22}px`);
+      petal.style.setProperty("--drift", `${driftValue}px`);
+      petal.style.setProperty("--drift-mid", `${driftValue * 0.6}px`);
+      petal.style.setProperty("--drift-turn", `${driftValue * -0.2}px`);
+      petal.style.setProperty("--duration", `${7 + Math.random() * 9}s`);
+      petal.style.setProperty("--delay", `${0.65 + Math.random() * 4.8}s`);
+      petal.style.setProperty("--opacity", `${0.42 + Math.random() * 0.52}`);
+      document.body.appendChild(petal);
+    }
+
+    let index = 0;
+
+    function typeWriter() {
+      wish.textContent = wishText.slice(0, index);
+      index += 1;
+
+      if (index <= wishText.length) {
+        window.setTimeout(typeWriter, 48);
+      }
+    }
+
+    window.setTimeout(typeWriter, 1250);
+  </script>
+</body>
+</html>
